@@ -1,0 +1,7 @@
+{
+  "name": "Processor of Bulk Orders",
+  "description": "A bulk order processor for Johnston Mooney & O'Brien to extract, manage, and print orders from images.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Processor of Bulk Orders</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.19.0"
+  }
+}
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+  /* Visually hide an element while keeping it accessible to screen readers and print styles */
+  .screen-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  
+  /* Styles for the page simulation in the preview screen */
+  .printable-page {
+    background: white;
+    width: 210mm;
+    min-height: 297mm;
+    margin: 1rem auto;
+    box-shadow: 0 0 0.5cm rgba(0,0,0,0.5);
+    padding: 1cm;
+    box-sizing: border-box;
+  }
+
+  .font-pingfang {
+    font-family: "PingFang HK", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  @media print {
+    /* Set the page size for printing */
+    @page {
+        size: 210mm 297mm;
+        margin: 0;
+    }
+
+    /* Hide elements that should not be printed */
+    .no-print {
+      display: none !important;
+    }
+    
+    /* Hide everything on the page by default */
+    body * {
+      visibility: hidden;
+    }
+
+    /* Make the printable area and its children visible */
+    .printable-area, .printable-area * {
+      visibility: visible;
+    }
+
+    /* Reset the container for printing */
+    .printable-area {
+      position: static;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+    }
+
+    /* Style each page for printing */
+    .printable-page {
+      box-shadow: none !important;
+      margin: 0 !important;
+      padding: 1cm !important; /* Add some padding for print */
+      width: 100%;
+      min-height: 0;
+      page-break-after: always;
+    }
+
+    .printable-page:last-child {
+      page-break-after: avoid;
+    }
+    
+    body {
+        margin: 0;
+    }
+  }
+</style>
+</head>
+  <body class="bg-gray-100">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
