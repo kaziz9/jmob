@@ -7,6 +7,7 @@ import PrintableReport from './components/PrintableReport';
 import FileUpload from './components/FileUpload';
 import LoadingSpinner from './components/LoadingSpinner';
 import CameraCapture from './components/CameraCapture';
+import PDFTextExtractor from './components/PDFTextExtractor';
 
 declare const jspdf: any;
 declare const html2canvas: any;
@@ -73,6 +74,7 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [isCameraOpen, setIsCameraOpen] = useState<boolean>(false);
+  const [isPdfExtractorOpen, setIsPdfExtractorOpen] = useState<boolean>(false);
 
 
   useEffect(() => {
@@ -425,10 +427,11 @@ const App: React.FC = () => {
             <h2 className="text-2xl font-bold text-gray-700 mb-2 text-center">Upload and Process Files</h2>
             
             <div className="mt-8">
-                <FileUpload 
+                <FileUpload
                   onFileSelect={handleFileSelect}
                   onTakePhoto={() => setIsCameraOpen(true)}
                   onCaptureScreen={handleCaptureScreen}
+                  onExtractPdf={() => setIsPdfExtractorOpen(true)}
                 />
             </div>
 
@@ -537,10 +540,13 @@ const App: React.FC = () => {
         {isPreviewing ? renderPreviewView() : renderMainView()}
       </main>
       {isCameraOpen && (
-        <CameraCapture 
+        <CameraCapture
           onCapture={handleFileSelect}
           onClose={() => setIsCameraOpen(false)}
         />
+      )}
+      {isPdfExtractorOpen && (
+        <PDFTextExtractor onClose={() => setIsPdfExtractorOpen(false)} />
       )}
     </div>
   );

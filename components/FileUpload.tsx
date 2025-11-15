@@ -4,9 +4,10 @@ interface UploadOptionsProps {
   onFileSelect: (files: File[]) => void;
   onTakePhoto: () => void;
   onCaptureScreen: () => void;
+  onExtractPdf: () => void;
 }
 
-const FileUpload: React.FC<UploadOptionsProps> = ({ onFileSelect, onTakePhoto, onCaptureScreen }) => {
+const FileUpload: React.FC<UploadOptionsProps> = ({ onFileSelect, onTakePhoto, onCaptureScreen, onExtractPdf }) => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       onFileSelect(Array.from(e.target.files));
@@ -61,6 +62,17 @@ const FileUpload: React.FC<UploadOptionsProps> = ({ onFileSelect, onTakePhoto, o
               <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
             Capture Screen
+          </button>
+
+          {/* Extract PDF Text Button */}
+          <button
+            onClick={onExtractPdf}
+            className="flex items-center justify-center w-full md:w-auto gap-3 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-transform transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-300"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+            Extract PDF Text
           </button>
         </div>
     </div>
